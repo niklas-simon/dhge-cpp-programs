@@ -1,0 +1,644 @@
+{
+    "age": [
+        {
+            "value": 14,
+            "result": -8
+        },
+        {
+            "value": 15,
+            "result": -6
+        },
+        {
+            "value": 16,
+            "result": -4
+        },
+        {
+            "value": 17,
+            "result": -4
+        },
+        {
+            "value": 18,
+            "result": 0
+        },
+        {
+            "value": 19,
+            "result": 0
+        },
+        {
+            "value": 20,
+            "result": 0
+        },
+        {
+            "value": 21,
+            "result": 0
+        },
+        {
+            "value": 22,
+            "result": 0
+        },
+        {
+            "value": 23,
+            "result": -2
+        },
+        {
+            "value": 24,
+            "result": -2
+        },
+        {
+            "value": 25,
+            "result": -2
+        },
+        {
+            "value": 26,
+            "result": -2
+        },
+        {
+            "value": 27,
+            "result": -2
+        },
+        {
+            "value": 28,
+            "result": -5
+        },
+        {
+            "value": 29,
+            "result": -5
+        },
+        {
+            "value": 30,
+            "result": -5
+        },
+        {
+            "value": 31,
+            "result": -9
+        },
+        {
+            "value": 32,
+            "result": -9
+        },
+        {
+            "value": 33,
+            "result": -9
+        },
+        {
+            "value": 34,
+            "result": -9
+        },
+        {
+            "value": 35,
+            "result": -9
+        },
+        {
+            "value": 36,
+            "result": -9
+        },
+        {
+            "value": 37,
+            "result": -9
+        },
+        {
+            "value": 38,
+            "result": -9
+        },
+        {
+            "value": 39,
+            "result": -9
+        },
+        {
+            "value": 40,
+            "result": -9
+        },
+        {
+            "value": 41,
+            "result": -10
+        },
+        {
+            "value": 42,
+            "result": -10
+        },
+        {
+            "value": 43,
+            "result": -10
+        },
+        {
+            "value": 44,
+            "result": -10
+        },
+        {
+            "value": 45,
+            "result": -10
+        },
+        {
+            "value": 46,
+            "result": -11
+        },
+        {
+            "value": 47,
+            "result": -11
+        },
+        {
+            "value": 48,
+            "result": -11
+        },
+        {
+            "value": 49,
+            "result": -11
+        },
+        {
+            "value": 50,
+            "result": -11
+        },
+        {
+            "value": 51,
+            "result": -12
+        },
+        {
+            "value": 52,
+            "result": -12
+        },
+        {
+            "value": 53,
+            "result": -12
+        },
+        {
+            "value": 54,
+            "result": -12
+        },
+        {
+            "value": 55,
+            "result": -12
+        },
+        {
+            "value": 56,
+            "result": -12
+        },
+        {
+            "value": 57,
+            "result": -12
+        },
+        {
+            "value": 58,
+            "result": -12
+        },
+        {
+            "value": 59,
+            "result": -12
+        },
+        {
+            "value": 60,
+            "result": -35
+        },
+        {
+            "value": 61,
+            "result": -35
+        },
+        {
+            "value": 62,
+            "result": -35
+        },
+        {
+            "value": 63,
+            "result": -35
+        },
+        {
+            "value": 64,
+            "result": -35
+        },
+        {
+            "value": 65,
+            "result": -35
+        },
+        {
+            "value": 66,
+            "result": -35
+        },
+        {
+            "value": 67,
+            "result": -35
+        },
+        {
+            "value": 68,
+            "result": -35
+        },
+        {
+            "value": 69,
+            "result": -35
+        },
+        {
+            "value": 70,
+            "result": -35
+        }
+    ],
+    "height": [
+        {
+            "value": 140,
+            "result": -12
+        },
+        {
+            "value": 141,
+            "result": -12
+        },
+        {
+            "value": 142,
+            "result": -12
+        },
+        {
+            "value": 143,
+            "result": -12
+        },
+        {
+            "value": 144,
+            "result": -12
+        },
+        {
+            "value": 145,
+            "result": -11
+        },
+        {
+            "value": 146,
+            "result": -11
+        },
+        {
+            "value": 147,
+            "result": -11
+        },
+        {
+            "value": 148,
+            "result": -11
+        },
+        {
+            "value": 149,
+            "result": -11
+        },
+        {
+            "value": 150,
+            "result": -8
+        },
+        {
+            "value": 151,
+            "result": -8
+        },
+        {
+            "value": 152,
+            "result": -8
+        },
+        {
+            "value": 153,
+            "result": -8
+        },
+        {
+            "value": 154,
+            "result": -8
+        },
+        {
+            "value": 155,
+            "result": -8
+        },
+        {
+            "value": 156,
+            "result": -8
+        },
+        {
+            "value": 157,
+            "result": -8
+        },
+        {
+            "value": 158,
+            "result": -8
+        },
+        {
+            "value": 159,
+            "result": -8
+        },
+        {
+            "value": 160,
+            "result": -8
+        },
+        {
+            "value": 161,
+            "result": -8
+        },
+        {
+            "value": 162,
+            "result": -8
+        },
+        {
+            "value": 163,
+            "result": -8
+        },
+        {
+            "value": 164,
+            "result": -8
+        },
+        {
+            "value": 165,
+            "result": -3
+        },
+        {
+            "value": 166,
+            "result": -3
+        },
+        {
+            "value": 167,
+            "result": -3
+        },
+        {
+            "value": 168,
+            "result": -3
+        },
+        {
+            "value": 169,
+            "result": -3
+        },
+        {
+            "value": 170,
+            "result": -2
+        },
+        {
+            "value": 171,
+            "result": -2
+        },
+        {
+            "value": 172,
+            "result": -2
+        },
+        {
+            "value": 173,
+            "result": 0
+        },
+        {
+            "value": 174,
+            "result": 0
+        },
+        {
+            "value": 175,
+            "result": 0
+        },
+        {
+            "value": 176,
+            "result": 0
+        },
+        {
+            "value": 177,
+            "result": 0
+        },
+        {
+            "value": 178,
+            "result": 0
+        },
+        {
+            "value": 179,
+            "result": 0
+        },
+        {
+            "value": 180,
+            "result": 0
+        },
+        {
+            "value": 181,
+            "result": -4
+        },
+        {
+            "value": 182,
+            "result": -4
+        },
+        {
+            "value": 183,
+            "result": -4
+        },
+        {
+            "value": 184,
+            "result": -4
+        },
+        {
+            "value": 185,
+            "result": -4
+        },
+        {
+            "value": 186,
+            "result": -6
+        },
+        {
+            "value": 187,
+            "result": -6
+        },
+        {
+            "value": 188,
+            "result": -6
+        },
+        {
+            "value": 189,
+            "result": -6
+        },
+        {
+            "value": 190,
+            "result": -6
+        },
+        {
+            "value": 191,
+            "result": -6
+        },
+        {
+            "value": 192,
+            "result": -6
+        },
+        {
+            "value": 193,
+            "result": -6
+        },
+        {
+            "value": 194,
+            "result": -6
+        },
+        {
+            "value": 195,
+            "result": -6
+        },
+        {
+            "value": 196,
+            "result": -12
+        },
+        {
+            "value": 197,
+            "result": -12
+        },
+        {
+            "value": 198,
+            "result": -12
+        },
+        {
+            "value": 199,
+            "result": -12
+        },
+        {
+            "value": 200,
+            "result": -12
+        },
+        {
+            "value": 201,
+            "result": -12
+        },
+        {
+            "value": 202,
+            "result": -12
+        },
+        {
+            "value": 203,
+            "result": -12
+        },
+        {
+            "value": 204,
+            "result": -12
+        },
+        {
+            "value": 205,
+            "result": -12
+        },
+        {
+            "value": 206,
+            "result": -12
+        },
+        {
+            "value": 207,
+            "result": -12
+        },
+        {
+            "value": 208,
+            "result": -12
+        },
+        {
+            "value": 209,
+            "result": -12
+        },
+        {
+            "value": 210,
+            "result": -12
+        },
+        {
+            "value": 211,
+            "result": -12
+        },
+        {
+            "value": 212,
+            "result": -12
+        },
+        {
+            "value": 213,
+            "result": -12
+        },
+        {
+            "value": 214,
+            "result": -12
+        },
+        {
+            "value": 215,
+            "result": -12
+        },
+        {
+            "value": 216,
+            "result": -12
+        },
+        {
+            "value": 217,
+            "result": -12
+        },
+        {
+            "value": 218,
+            "result": -12
+        },
+        {
+            "value": 219,
+            "result": -12
+        },
+        {
+            "value": 220,
+            "result": -12
+        }
+    ],
+    "haircolor": [
+        {
+            "value": "blonde",
+            "result": 0
+        },
+        {
+            "value": "brown",
+            "result": -2
+        },
+        {
+            "value": "black",
+            "result": -4
+        },
+        {
+            "value": "red",
+            "result": -10
+        },
+        {
+            "value": "grey",
+            "result": -4
+        }
+    ],
+    "hair": [
+        {
+            "value": "long",
+            "result": 0
+        },
+        {
+            "value": "middle",
+            "result": 18
+        },
+        {
+            "value": "short",
+            "result": 8
+        }
+    ],
+    "eyecolor": [
+        {
+            "value": "blue",
+            "result": 0
+        },
+        {
+            "value": "green",
+            "result": -2
+        },
+        {
+            "value": "brown",
+            "result": -6
+        },
+        {
+            "value": "grey",
+            "result": -4
+        }
+    ],
+    "beard": [
+        {
+            "value": "none",
+            "result": 0
+        },
+        {
+            "value": "small",
+            "result": -5
+        },
+        {
+            "value": "middle",
+            "result": 4
+        },
+        {
+            "value": "large",
+            "result": 2
+        }
+    ],
+    "body": [
+        {
+            "value": "muscle",
+            "result": 0
+        },
+        {
+            "value": "normal",
+            "result": -3
+        },
+        {
+            "value": "chubby",
+            "result": -7
+        }
+    ]
+}
