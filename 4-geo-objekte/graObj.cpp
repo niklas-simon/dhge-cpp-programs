@@ -1,28 +1,17 @@
 #include "graObj.h"
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
-GraObj::GraObj(const Color &_color, int _posX, int _posY, int _speedX, int _speedY, int _width, int _height)
-    : color(_color), posX(_posX), posY(_posY), speedX(_speedX), speedY(_speedY), width(_width), height(_height) {
-    draw();
-}
-GraObj::~GraObj() { undraw(); }
+GraObj::GraObj(const Color &_color, int _posX, int _posY, int _speedX, int _speedY, int _width, int _height) :
+    color(_color), posX(_posX), posY(_posY), speedX(_speedX), speedY(_speedY), width(_width), height(_height) {}
+
 GraObj::GraObj(GraObj *rect) :
-    color(Color(
-        max(rect->getColor().getR() - 5, 0),
-        max(rect->getColor().getG() - 5, 0),
-        max(rect->getColor().getB() - 5, 0)
-    )), 
-    posX(rect->getPosX()), 
-    posY(rect->getPosY()), 
-    speedX(rect->getSpeedX()), 
-    speedY(rect->getSpeedY()), 
-    width(max(rect->getWidth() - 3, 0)),
-    height(max(rect->getHeight() - 3, 0)) {
-    draw();
-}
+    color(rect->getColor()),
+    posX(rect->getPosX()), posY(rect->getPosY()),
+    speedX(rect->getSpeedX()), speedY(rect->getSpeedY()),
+    width(rect->getWidth()), height(rect->getHeight()) {}
 
 Color GraObj::getColor() const { return color; }
 int GraObj::getPosX() const { return posX; }
@@ -35,11 +24,12 @@ int GraObj::getHeight() const { return height; }
 
 void GraObj::setColor(const Color &_color) {
     color = _color;
-    draw();                                   
+    draw();
 }
 
 void GraObj::setSpeed(int _speedX, int _speedY) {
-    speedX = _speedX; speedY = _speedY;
+    speedX = _speedX;
+    speedY = _speedY;
 }
 
 void GraObj::setSize(int _width, int _height) {
@@ -55,12 +45,12 @@ void GraObj::scale(int percX, int percY) {
     height = percY * height / 100;
     draw();
 }
-    
+
 void GraObj::setPos(int x, int y) {
-    undraw();    
-    posX = x;      
+    undraw();
+    posX = x;
     posY = y;
-    draw();    
+    draw();
 }
 
 void GraObj::move(int dx, int dy) {

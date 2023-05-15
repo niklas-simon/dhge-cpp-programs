@@ -7,8 +7,7 @@
 class GraObj {
     public:
         GraObj(const Color &_color, int _posX, int _posY, int _speedX, int _speedY, int _width, int _height);
-        ~GraObj();
-        GraObj(GraObj *rect);
+        GraObj(GraObj *obj);
 
         Color getColor() const;
         int getPosX() const;
@@ -26,23 +25,25 @@ class GraObj {
         void setSize(int _width, int _height);
 
         void scale(int percX, int percY);
-    
+
         void setPos(int x, int y);
 
         void move(int dx, int dy);
 
         bool fly(bool bounce = false);
 
-        void draw();
+        virtual void draw() = 0;
 
-        void undraw();
+        virtual void undraw() = 0;
 
         void moveOnTop(GraObj &rect);
 
+        virtual GraObj *clone() = 0;
+
     protected:
-        Color color;                                                         
-        int posX, posY;      
-        int speedX, speedY;                         
+        Color color;
+        int posX, posY;
+        int speedX, speedY;
         int width, height;
 };
 

@@ -1,0 +1,33 @@
+if (x) {
+    a + 15
+}
+
+ADDR x
+FJMP 9
+ADDR a
+ADD 15
+
+while (x) {
+    x -= a;
+}
+
+ADDR x
+FJUMP 18
+SUB a
+TJUMB 16
+
+for (i,0,a,1) {
+    x += 1;
+}
+
+ADDR i
+SET 0
+ADDR tmp
+SET a
+SUB i
+FJUMP 34
+ADDR x
+ADD 1
+ADDR i
+ADD 1
+JMP 25

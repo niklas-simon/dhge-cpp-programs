@@ -6,9 +6,9 @@
 #define _SDLINTERF_H
 
 // Breite des Grafik-Fensters (in Pixeln)
-#define SDL_X_SIZE 2880
+#define SDL_X_SIZE 1920
 // Höhe des Grafik-Fensters (in Pixeln)
-#define SDL_Y_SIZE 1920
+#define SDL_Y_SIZE 1080
 
 // Ändert die Berechnung des Farbkreises für sdlDrawCyclicPoint:
 // Ohne NEW_COLOR_WHEEL rotiert der Farbkreis zwischen rot, grün und blau
@@ -23,12 +23,12 @@ extern "C" {
 #endif
 
 // Initialisiere die SDL (mach das Grafikfenster auf)
-// 
+//
 // Sollte im main möglichst bald aufgerufen werden
 extern void sdlInit(void);
 
 // Schließe SDL (mach das Grafikfenster wieder zu)
-// 
+//
 // Sollte im main vor Ende des Programms aufgerufen werden
 extern void sdlExit(void);
 
@@ -108,11 +108,11 @@ extern void sdlDrawCirc(int centerX, int centerY, int radX, int radY,
 //             SDL_CIRC_LOWER_RIGHT ... Quadrant rechts unten,
 //             SDL_CIRC_UPPER_LEFT  ... Quadrant links oben,
 //             SDL_CIRC_LOWER_LEFT  ... Quadrant links unten
-#define SDL_CIRC_FILLED       1
-#define SDL_CIRC_UPPER_RIGHT  2
-#define SDL_CIRC_LOWER_RIGHT  4
-#define SDL_CIRC_UPPER_LEFT   8
-#define SDL_CIRC_LOWER_LEFT   16
+#define SDL_CIRC_FILLED 1
+#define SDL_CIRC_UPPER_RIGHT 2
+#define SDL_CIRC_LOWER_RIGHT 4
+#define SDL_CIRC_UPPER_LEFT 8
+#define SDL_CIRC_LOWER_LEFT 16
 #define SDL_CIRC_LEFT (SDL_CIRC_UPPER_LEFT | SDL_CIRC_LOWER_LEFT)
 #define SDL_CIRC_RIGHT (SDL_CIRC_UPPER_RIGHT | SDL_CIRC_LOWER_RIGHT)
 #define SDL_CIRC_UPPER (SDL_CIRC_UPPER_LEFT | SDL_CIRC_UPPER_RIGHT)
