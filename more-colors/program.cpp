@@ -111,11 +111,14 @@ int main(int argc, char **argv) {
 
     int count = 3;
     Vector *points[count];
-    for (int i = 0; i < count; i++) {
+    /* for (int i = 0; i < count; i++) {
         points[i] = new Vector(rand() % (SDL_X_SIZE / 2) + SDL_X_SIZE / 4, rand() % (SDL_Y_SIZE / 2) + SDL_Y_SIZE / 4);
-        // points[i] = new Vector((i + 1) * SDL_X_SIZE / (count + 1), SDL_Y_SIZE / 2);
-        sdlDrawCirc(points[i]->getX(), points[i]->getY(), 10, 10, 255, 255, 255);
-    }
+        //points[i] = new Vector((i + 1) * SDL_X_SIZE / (count + 1), SDL_Y_SIZE / 2);
+    } */
+
+    points[0] = new Vector(SDL_X_SIZE / 5, SDL_Y_SIZE / 5);
+    points[1] = new Vector(4 * SDL_X_SIZE / 5, SDL_Y_SIZE / 5);
+    points[2] = new Vector(SDL_X_SIZE / 2, 4 * SDL_Y_SIZE / 5);
 
     Line *borders[count];
     for (int i = 0; i < count; i++) {
@@ -123,16 +126,22 @@ int main(int argc, char **argv) {
             Vector toMiddle = (*points[j] - *points[i]) / 2;
             Vector orthogonal = Vector(toMiddle.getY(), -toMiddle.getX());
             Vector middle = *points[i] + toMiddle;
-            sdlDrawCirc(middle.getX(), middle.getY(), 5, 5, 255, 0, 0);
             borders[i + j - 1] = new Line(middle, orthogonal);
-            sdlDrawLine(middle.getX(), middle.getY(), middle.getX() + orthogonal.getX(), middle.getY() + orthogonal.getY(), 255, 255, 255);
         }
     }
 
-    for (int i = 0; i < count; i++) {
-        for (int j = i + 1; j < count; j++) {
-            Vector cross = borders[i]->intersection(*borders[j]);
-            sdlDrawCirc(cross.getX(), cross.getY(), 5, 5, 0, 255, 0);
+    int colors[count];
+    for (int x = 0; x < SDL_X_SIZE; x++) {
+        for (int y = 0; y < SDL_Y_SIZE; y++) {
+            Vector v = Vector(x, y);
+            // for each color
+            for (int i = 0; i < count; i++) {
+                int dist = (v - *points[i]).getL();
+                colors[i] = 255 * 300 / (dist == 0 ? 1 : dist);
+                if (colors[i] > 255)
+                    colors[i] = 255;
+            }
+            sdlDrawPoint(x, y, colors[0], colors[1], colors[2]);
         }
     }
 
