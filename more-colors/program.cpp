@@ -1,8 +1,8 @@
-#include <color.h>
+#include "color.h"
+#include "sdlinterf.h"
 #include <iostream>
 #include <map>
 #include <math.h>
-#include <sdlinterf.h>
 #include <time.h>
 
 using namespace std;
@@ -58,7 +58,7 @@ class Vector {
             return x < 0 || x >= SDL_X_SIZE || y < 0 || y >= SDL_Y_SIZE;
         }
         void draw(Color c = Color(255, 0, 0)) {
-            sdlDrawCirc(x, y, 5, 5, c.getR(), c.getG(), c.getB());
+            sdlDrawCirc(x, y, 5, 5, c.r, c.g, c.b);
         }
 
     private:
@@ -99,50 +99,54 @@ class Line {
             return Vector(i_x, i_y);
         }
         void draw(Color c = Color(255, 255, 255)) {
-            sdlDrawLine(origin.getX(), origin.getY(), (origin + direction).getX(), (origin + direction).getY(), c.getR(), c.getG(), c.getB());
+            sdlDrawLine(origin.getX(), origin.getY(), (origin + direction).getX(), (origin + direction).getY(), c.r, c.g, c.b);
         }
 };
 
+struct Point {
+        double x;
+        double y;
+};
+
+int halfX = SDL_X_SIZE / 2;
+int halfY = SDL_Y_SIZE / 2;
+int scale = SDL_X_SIZE < SDL_Y_SIZE ? SDL_X_SIZE / 3 : SDL_Y_SIZE / 3;
+
+Point getCoordinates(int x, int y) {
+    return {(double)(x - halfX) / scale, (double)(y - halfY) / scale};
+}
+
+double halfPi = M_PI / 2;
+Color pointToColor(int x, int y) {
+    Point p = getCoordinates(x, y);
+    double res = p.x * p.x + p.y * p.y;
+    double a = 0;
+    if (res)
+        a = asin(p.y / sqrt(res)) + halfPi;
+    if (p.x > 0) {
+        a = 2 * M_PI - a;
+    }
+    if (res > 2) {
+        res = 0;
+    } else if (res > 1) {
+        res = 2 - res;
+    }
+    double h = a * 180 / M_PI;
+    return Color(h, 1.0, res * res);
+}
+
 int main(int argc, char **argv) {
-    srand(time(NULL));
 
     sdlInit();
+    sdlSetFullscreen();
     sdlSetBlack();
 
-    int count = 3;
-    Vector *points[count];
-    /* for (int i = 0; i < count; i++) {
-        points[i] = new Vector(rand() % (SDL_X_SIZE / 2) + SDL_X_SIZE / 4, rand() % (SDL_Y_SIZE / 2) + SDL_Y_SIZE / 4);
-        //points[i] = new Vector((i + 1) * SDL_X_SIZE / (count + 1), SDL_Y_SIZE / 2);
-    } */
-
-    points[0] = new Vector(SDL_X_SIZE / 5, SDL_Y_SIZE / 5);
-    points[1] = new Vector(4 * SDL_X_SIZE / 5, SDL_Y_SIZE / 5);
-    points[2] = new Vector(SDL_X_SIZE / 2, 4 * SDL_Y_SIZE / 5);
-
-    Line *borders[count];
-    for (int i = 0; i < count; i++) {
-        for (int j = i + 1; j < count; j++) {
-            Vector toMiddle = (*points[j] - *points[i]) / 2;
-            Vector orthogonal = Vector(toMiddle.getY(), -toMiddle.getX());
-            Vector middle = *points[i] + toMiddle;
-            borders[i + j - 1] = new Line(middle, orthogonal);
-        }
-    }
-
-    int colors[count];
     for (int x = 0; x < SDL_X_SIZE; x++) {
         for (int y = 0; y < SDL_Y_SIZE; y++) {
-            Vector v = Vector(x, y);
-            // for each color
-            for (int i = 0; i < count; i++) {
-                int dist = (v - *points[i]).getL();
-                colors[i] = 255 * 300 / (dist == 0 ? 1 : dist);
-                if (colors[i] > 255)
-                    colors[i] = 255;
-            }
-            sdlDrawPoint(x, y, colors[0], colors[1], colors[2]);
+            Color c = pointToColor(x, y);
+            sdlDrawPoint(x, y, c.r, c.g, c.b);
         }
+        sdlUpdate();
     }
 
     sdlUpdate();

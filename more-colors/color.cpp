@@ -1,5 +1,8 @@
 #include "color.h"
+#include <iostream>
 #include <math.h>
+
+using namespace std;
 
 struct RGB {
         unsigned char R;
@@ -89,21 +92,17 @@ Color &Color::random() {
     return *color;
 }
 
-void Color::darken(int n) {
-    r -= n;
-    g -= n;
-    b -= n;
-    if (r < 0)
-        r = 0;
-    if (g < 0)
-        g = 0;
-    if (b < 0)
-        b = 0;
-}
-
 Color::Color(double h, double s, double v) {
     RGB rgb = HSVToRGB({h, s, v});
     r = rgb.R;
     g = rgb.G;
     b = rgb.B;
+}
+
+Color *Color::normalize() {
+    int sum = r + g + b;
+    r = r * 255 / sum;
+    g = g * 255 / sum;
+    b = b * 255 / sum;
+    return this;
 }
