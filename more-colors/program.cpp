@@ -120,19 +120,22 @@ double halfPi = M_PI / 2;
 Color pointToColor(int x, int y) {
     Point p = getCoordinates(x, y);
     double res = p.x * p.x + p.y * p.y;
+    double l = sqrt(res);
     double a = 0;
     if (res)
-        a = asin(p.y / sqrt(res)) + halfPi;
+        a = asin(p.y / l) + halfPi;
     if (p.x > 0) {
         a = 2 * M_PI - a;
     }
-    if (res > 2) {
-        res = 0;
-    } else if (res > 1) {
-        res = 2 - res;
+    if (res > 1) {
+        res = 1 / pow(res, 1.5);
     }
     double h = a * 180 / M_PI;
-    return Color(h, 1.0, res * res);
+    if (h > 180)
+        h = 360 - h;
+    h *= .66;
+    h += 120;
+    return Color(h, 1.0, l < 1 ? (res * res) : res);
 }
 
 int main(int argc, char **argv) {
@@ -146,7 +149,6 @@ int main(int argc, char **argv) {
             Color c = pointToColor(x, y);
             sdlDrawPoint(x, y, c.r, c.g, c.b);
         }
-        sdlUpdate();
     }
 
     sdlUpdate();
