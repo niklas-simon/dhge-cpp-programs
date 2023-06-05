@@ -135,5 +135,6 @@ int main(int argc, char **argv) {
         check_i--;
     }
     if (n != 1)
-        printf("%i\n", n);
+        printf("%i", n);
+    printf("\n");
 }

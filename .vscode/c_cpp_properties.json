@@ -10,8 +10,19 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "C:\\MinGW\\bin\\g++.exe",
+            "compilerPath": "/usr/bin/g++",
             "intelliSenseMode": "windows-msvc-x64"
+        },
+        {
+            "name": "WSL",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4
