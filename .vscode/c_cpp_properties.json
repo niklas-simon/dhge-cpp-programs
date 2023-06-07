@@ -3,15 +3,23 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "c:\\Users\\nikla\\OneDrive - Duale Hochschule Gera-Eisenach\\dhge-cpp-programs/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "/usr/bin/g++",
-            "intelliSenseMode": "windows-msvc-x64"
+            "compilerPath": "C:\\MinGW\\bin\\g++.exe",
+            "intelliSenseMode": "windows-msvc-x64",
+            "compilerPathInCppPropertiesJson": "/usr/bin/g++",
+            "mergeConfigurations": false,
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
         },
         {
             "name": "WSL",

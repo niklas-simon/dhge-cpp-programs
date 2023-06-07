@@ -1,0 +1,23 @@
+.external-link {
+    text-decoration: none;
+    font-family: 'Amazon Ember', 'Helvetica Neue', Roboto, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #0073bb;
+    align-items: center;
+    display: flex
+}
+
+.external-link:hover {
+    text-decoration: underline
+}
+
+.external-link:after {
+    display: flex;
+    content: url(/static/image/privatelink/external-link-icon-blue.svg);
+    margin-left: .25rem;
+    height: 14px;
+    width: 14px
+}

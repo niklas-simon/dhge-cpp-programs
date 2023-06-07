@@ -1,0 +1,21 @@
+.secondary-button-link {
+    box-sizing: border-box;
+    flex-direction: row;
+    padding: 6px 16px;
+    background: #fff;
+    border: 1px solid #545b64;
+    border-radius: 2px;
+    font-family: 'Amazon Ember', 'Helvetica Neue', Roboto, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+    color: #545b64;
+    text-decoration: none
+}
+
+.secondary-button-link:hover {
+    color: #16191f;
+    border-color: #16191f;
+    background: #fafafa
+}

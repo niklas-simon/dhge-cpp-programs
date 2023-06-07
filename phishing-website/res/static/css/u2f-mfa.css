@@ -1,0 +1,109 @@
+.u2f-container {
+    width: 22rem
+}
+
+.u2fWarning {
+    background-color: #fffcec;
+    border: .09rem solid #e07700;
+    border-radius: .4rem;
+    padding: .8rem .9rem .09rem .9rem
+}
+
+.u2f-header-text {
+    font-size: 14px;
+    line-height: 19px
+}
+
+.u2f-text-padding {
+    margin-bottom: .9rem
+}
+
+.u2f-image-padding {
+    margin-bottom: .3rem
+}
+
+.u2f-header {
+    margin-bottom: .3rem
+}
+
+.u2f-padding {
+    margin-top: 1rem;
+    margin-bottom: 1rem
+}
+
+.u2f-border {
+    border-bottom: .09rem dotted #DDDD;
+    border-top: .09rem dotted #DDDD;
+    width: 21rem
+}
+
+.u2f-incompatible-border {
+    padding-bottom: .5rem;
+    padding-top: .2rem
+}
+
+.u2f-text {
+    line-height: .5rem
+}
+
+.u2f-mfa-insert-key-text {
+    line-height: 19px
+}
+
+.buttoninput {
+    margin-top: 1rem;
+    clear: both
+}
+
+.u2f-button {
+    margin-top: 1rem;
+    font-size: .9rem;
+    font-style: normal;
+    color: #16b;
+    display: block;
+    line-height: .5rem;
+    cursor: pointer
+}
+
+.u2f-mobile-link,
+.u2f-mobile-link:hover {
+    font-size: .9rem
+}
+
+.mainWarningWithBorderMobile {
+    background-color: #fffcec;
+    border: .05rem solid #e07700;
+    border-radius: 4px;
+    padding-top: 13px;
+    padding-left: 20px
+}
+
+.mainWarningWithBorder {
+    background-color: #fffcec;
+    border: .05rem solid #e07700;
+    border-radius: .3rem;
+    padding-top: .75rem;
+    padding-left: 1rem
+}
+
+.u2f_loading:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: ellipsis steps(4, end) 900ms infinite;
+    animation: ellipsis steps(4, end) 900ms infinite;
+    content: "\2026";
+    width: 0rem
+}
+
+@keyframes ellipsis {
+    to {
+        width: 1.25rem
+    }
+}
+
+@-webkit-keyframes ellipsis {
+    to {
+        width: 1.25rem
+    }
+}
