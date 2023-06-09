@@ -4,7 +4,8 @@
         "fstream": "cpp",
         "istream": "cpp",
         "ostream": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "new": "cpp"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
