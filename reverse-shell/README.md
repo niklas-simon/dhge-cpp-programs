@@ -27,7 +27,7 @@ There is **re.cpp** file you have to open and change the **ip address** and **po
 
 ## Compile it
 
-    i686-w64-mingw32-g++ re.cpp -o re.exe -lws2_32 -lwininet -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc
+    g++ re.cpp -o re.exe -lws2_32 -lwininet -s -ffunction-sections -fdata-sections -Wno-write-strings -fno-exceptions -fmerge-all-constants -static-libstdc++ -static-libgcc res.res
 
 ## Start  the netcat Listener
  
