@@ -5,7 +5,8 @@
         "istream": "cpp",
         "ostream": "cpp",
         "iostream": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "algorithm": "cpp"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
