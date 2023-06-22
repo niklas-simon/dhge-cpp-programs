@@ -3,10 +3,10 @@
 #include <cmath>
 #include <iostream>
 
-Comp::Comp(int x, int y, int sx, int sy):
+Comp::Comp(int x, int y, int sx, int sy) :
     GraObj(Color(), x, y, sx, sy, 0, 0) {}
 
-Comp::Comp(Comp *c):
+Comp::Comp(Comp *c) :
     GraObj(c) {
     for (auto i : c->sub) {
         sub.push_back(i->clone());
@@ -28,8 +28,10 @@ void Comp::recalcSize() {
     for (auto i : sub) {
         int x = i->getWidth() + abs(posX - i->getPosX());
         int y = i->getHeight() + abs(posY - i->getPosY());
-        if (x > maxX) maxX = x;
-        if (y > maxY) maxY = y;
+        if (x > maxX)
+            maxX = x;
+        if (y > maxY)
+            maxY = y;
     }
 }
 
@@ -43,10 +45,12 @@ void Comp::setPos(int x, int y) {
 }
 
 void Comp::move(int dx, int dy) {
+    cout << "moving " << dx << " " << dy << endl;
     undraw();
     posX += dx;
     posY += dy;
-    for (auto i : sub) i->move(dx, dy);
+    for (auto i : sub)
+        i->move(dx, dy);
     draw();
 }
 
@@ -66,8 +70,10 @@ void Comp::scale(int percX, int percY) {
 
 void Comp::draw() {
     cout << "drawing complex shape with size " << sub.size() << endl;
-    for (auto i : sub) i->draw();
+    for (auto i : sub)
+        i->draw();
 }
 void Comp::undraw() {
-    for (auto i : sub) i->undraw();
+    for (auto i : sub)
+        i->undraw();
 }
