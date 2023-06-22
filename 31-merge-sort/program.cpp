@@ -2,8 +2,21 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <iterator>
 
 using namespace std;
+
+template <typename T>
+void merge(forward_list<T> &dest, forward_list<T> &src) {
+    auto before = dest.before_begin();
+    auto after = dest.begin();
+    for (;!src.empty();) {
+        auto tmp = *src.begin();
+        src.pop_front();
+        for (;after != dest.end() && *after < tmp;before = next(before), after = next(after)) {}
+        before = src.insert_after(before, tmp);
+    }
+}
 
 template <typename T>
 void merge_sort(forward_list<T> *list, vector<T> &vector, int begin, int end) {
@@ -17,7 +30,7 @@ void merge_sort(forward_list<T> *list, vector<T> &vector, int begin, int end) {
     int middle = begin + (end - begin) / 2;
     merge_sort<T>(list, vector, begin, middle);
     merge_sort<T>(&tmp, vector, middle + 1, end);
-    list->merge(tmp);
+    merge(*list, tmp);
 }
 
 void copy_sorted(string in, string out) {
@@ -51,5 +64,3 @@ int main(int argc, char **argv) {
     }
     exit(EXIT_SUCCESS);
 }
-
-// todo: D
