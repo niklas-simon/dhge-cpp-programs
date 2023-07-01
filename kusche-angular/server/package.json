@@ -1,0 +1,17 @@
+{
+  "name": "kusche-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@dsardar099/pdf-to-html": "^1.0.6",
+    "express": "^4.18.2",
+    "node-html-parser": "^6.1.5",
+    "windows-1252": "^3.0.4"
+  }
+}

@@ -1,0 +1,20 @@
+<mat-toolbar class="flex row">
+    <h1 (click)="navigate(title?.href || '')" class="fill">{{title?.text}}</h1>
+    <button mat-button 
+        *ngFor="let e of menu" 
+        [matMenuTriggerFor]="e.href ? null : sub" 
+        (click)="selected = e.href ? navigate(e.href) : e.id"
+        [color]="current?.id === e.id ? 'primary' : 'basic'">
+        {{e.text}}
+    </button>
+    <mat-menu #sub="matMenu">
+        <div class="flex col">
+            <button mat-button 
+                *ngFor="let e of submenu | filter:'id':selected" 
+                (click)="navigate(e.href)"
+                [color]="current?.href === e.href ? 'primary' : 'basic'">
+                {{e.text}}
+            </button>
+        </div>
+    </mat-menu>
+</mat-toolbar>
