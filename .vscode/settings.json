@@ -10,7 +10,9 @@
         "*.tcc": "cpp",
         "graobj.h": "c",
         "random": "cpp",
-        "vector": "c"
+        "vector": "c",
+        "iterator": "c"
     },
-    "C_Cpp.default.compilerPath": "/usr/bin/g++"
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "C_Cpp.errorSquiggles": "disabled"
 }

@@ -1,0 +1,20 @@
+<div class="flex col">
+    <container-elem *ngFor="let elem of root.children" [ngSwitch]="elem.type">
+        <div *ngSwitchCase="'H1'" class="flex col">
+            <h1>{{elem.text}}</h1>
+            <app-page-element *ngFor="let e of elem.children" [element]="e"></app-page-element>
+        </div>
+        <mat-expansion-panel *ngSwitchCase="'H2'" class="flex col">
+            <mat-expansion-panel-header>{{elem.text}}</mat-expansion-panel-header>
+            <app-page-element *ngFor="let e of elem.children" [element]="e"></app-page-element>
+        </mat-expansion-panel>
+        <div *ngSwitchCase="'H3'" class="flex col">
+            <h3>{{elem.text}}</h3>
+            <app-page-element *ngFor="let e of elem.children" [element]="e"></app-page-element>
+        </div>
+        <div *ngSwitchCase="'UL'" class="flex col">
+            <app-page-element *ngFor="let e of elem.children" [element]="e"></app-page-element>
+        </div>
+        <div *ngSwitchDefault [outerHTML]="elem | compress"></div>
+    </container-elem>
+</div>

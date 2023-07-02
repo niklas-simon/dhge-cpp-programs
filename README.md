@@ -7,3 +7,6 @@ g++ .\program.cpp .\sdlinterf.c -L..\libs\lib -I..\libs\include\ -static -lmingw
 
 for linux:
 g++ $(sdl2-config --cflags) program.cpp sdlinterf.c $(sdl2-config --libs)
+
+for wxWidgets
+g++ program.cpp `wx-config --cxxflags --libs`
