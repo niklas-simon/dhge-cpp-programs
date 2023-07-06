@@ -194,7 +194,7 @@ class Tree {
                 n->word = successor->word;
                 n->count = successor->count;
                 if (parent == n) {
-                    n->left = successor->left;
+                    parent->left = successor->left;
                 } else {
                     parent->right = successor->left;
                 }

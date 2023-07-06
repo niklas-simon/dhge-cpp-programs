@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Element, KuscheService } from '../kusche.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { FileViewerComponent } from '../file-viewer/file-viewer.component';
+import { map } from 'rxjs';
 
 @Component({
     selector: 'app-page-element',
@@ -10,7 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PageElementComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
-        private kusche: KuscheService
+        private kusche: KuscheService,
+        private dialog: MatDialog
     ) {}
 
     @Input() element?: Element;
@@ -20,6 +24,8 @@ export class PageElementComponent implements OnInit {
         href: null,
         children: []
     }
+
+    @Input() params?: Params;
 
     getA = (e?: Element) : Element | undefined => {
         if (!e) {
@@ -38,6 +44,10 @@ export class PageElementComponent implements OnInit {
         return e;
     }
 
+    hasView(e: Element) : boolean {
+        return (e.type == "A" ? encodeURI(e.href || "").includes(encodeURI(this.params?.['view'])) : e.children?.some(e => this.hasView(e))) || false;
+    }
+
     ngOnInit(): void {
         if (this.element) {
             this.root.children = [this.element];
@@ -48,5 +58,17 @@ export class PageElementComponent implements OnInit {
                 this.root.children = res;
             }
         }));
+        if (!this.params) {
+            this.route.queryParams.subscribe(params => {
+                this.params = params;
+                if (params['view']) {
+                    this.dialog.open(FileViewerComponent, {
+                        data: params['view'],
+                        height: "90vh",
+                        width: "90vw"
+                    });
+                }
+            });
+        }
     }
 }

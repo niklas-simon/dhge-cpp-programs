@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Element } from './kusche.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 const iconMap = {
     "pdf": "description",
@@ -13,7 +14,8 @@ const iconMap = {
 })
 export class CompressPipe implements PipeTransform {
     constructor(
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private route: ActivatedRoute
     ){}
 
     transform(value: Element, asString?: boolean): SafeHtml | string {
@@ -31,7 +33,13 @@ export class CompressPipe implements PipeTransform {
         if (value.type === "A") {
             str = `<mat-icon class="inline mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color">${iconMap[value.href?.replace(/.*\./, "") || ""] || "link"}</mat-icon><span>${str}</span>`;
         }
-        str = `<${value.type} href="${value.href}">${str}</${value.type}>`;
+        if (value.href?.match(/^.*\.\w{1,3}$/)) {
+            // file
+            str = `<${value.type} href="${window.location.pathname}?view=${encodeURIComponent(value.href)}">${str}</${value.type}>`;
+        } else {
+            // link
+            str = `<${value.type} href="${value.href}" ${value.href?.includes('http') ? 'target="_blank"' : ''}>${str}</${value.type}>`;
+        }
         return asString ? str : this.sanitizer.bypassSecurityTrustHtml(str);
     }
 

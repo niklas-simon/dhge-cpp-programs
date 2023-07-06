@@ -5,6 +5,7 @@ const app = express();
 app.use(express.static("../client/dist/client"));
 
 app.get("/api/**", async (req, res) => {
+    console.log(req.url);
     res.send(await Kusche.load(req.url.replace("/api/", "")));
 })
 

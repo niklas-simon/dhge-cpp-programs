@@ -15,6 +15,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CompressPipe } from './compress.pipe';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { FileViewerComponent } from './file-viewer/file-viewer.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -23,7 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
         FilterPipe,
         PageElementComponent,
         PageNotFoundComponent,
-        CompressPipe
+        CompressPipe,
+        FileViewerComponent
     ],
     imports: [
         BrowserModule,
@@ -34,7 +38,9 @@ import { MatIconModule } from '@angular/material/icon';
         MatMenuModule,
         MatButtonModule,
         MatExpansionModule,
-        MatIconModule
+        MatIconModule,
+        PdfViewerModule,
+        MatDialogModule
     ],
     providers: [],
     bootstrap: [AppComponent]

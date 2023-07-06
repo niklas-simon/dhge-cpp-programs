@@ -13,7 +13,7 @@ struct Pair {
         U second;
 };
 
-template <typename T, int size>
+template <typename T, int pixels>
 class Counter {
     public:
         Counter() :
@@ -28,7 +28,7 @@ class Counter {
             }
             if (index != -1) {
                 array[index].second++;
-            } else if (size > used) {
+            } else if (pixels > used) {
                 for (index = used - 1; e < array[index].first && index >= 0; index--) {
                     array[index + 1] = array[index];
                 }
@@ -43,7 +43,7 @@ class Counter {
         friend ostream &operator<<(ostream &out, Counter<T2, size2> &c);
 
     private:
-        Pair<T, int> array[size];
+        Pair<T, int> array[pixels];
         int used;
 };
 

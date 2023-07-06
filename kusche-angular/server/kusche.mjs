@@ -141,17 +141,14 @@ export default {
     /**
      * 
      * @param {string} url 
-     * @returns {Element[] | string}
+     * @returns {Promise<Element[] | string>}
      */
     load: async url => {
         const res = await request("https://computerix.info/" + url);
         console.log(res);
         switch (url.replace(/.*\./, "")) {
             case "pdf":
-                fs.writeFileSync("tmp.pdf", res);
-                const converter = new pdf2html("tmp.pdf", "tmp.html");
-                await converter.convert("default");
-                return fs.readFileSync("tmp.html");
+                return res;
             case "c":
             case "cpp":
                 return res.toString("utf-8");

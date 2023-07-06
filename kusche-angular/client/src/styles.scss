@@ -20,9 +20,9 @@ $client-warn: mat.define-palette(mat.$red-palette);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $client-theme: mat.define-dark-theme((color: (primary: $client-primary,
-    accent: $client-accent,
-    warn: $client-warn,
-)));
+                accent: $client-accent,
+                warn: $client-warn,
+            )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -42,7 +42,7 @@ body {
 }
 
 .flex {
-    display: flex;
+    display: flex !important;
 }
 
 .row {
@@ -53,6 +53,10 @@ body {
     flex-direction: column;
 }
 
+.flex1 {
+    flex: 1;
+}
+
 .fill {
     flex: 1;
 }
@@ -61,13 +65,16 @@ a:link {
     color: mat.get-color-from-palette($client-primary, default);
     text-decoration: none;
 }
+
 a:visited {
     color: mat.get-color-from-palette($client-accent, default);
     text-decoration: none;
 }
+
 a:hover span {
     text-decoration: underline;
 }
+
 a {
     display: inline-flex;
     align-items: center;

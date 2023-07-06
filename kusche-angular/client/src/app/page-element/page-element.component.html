@@ -2,18 +2,20 @@
     <container-elem *ngFor="let elem of root.children" [ngSwitch]="elem.type">
         <div *ngSwitchCase="'H1'" class="flex col">
             <h1>{{elem.text}}</h1>
-            <app-page-element *ngFor="let e of elem.children" [element]="e"></app-page-element>
+            <app-page-element *ngFor="let e of elem.children" [element]="e" [params]="params"></app-page-element>
         </div>
-        <mat-expansion-panel *ngSwitchCase="'H2'" class="flex col">
-            <mat-expansion-panel-header>{{elem.text}}</mat-expansion-panel-header>
-            <app-page-element *ngFor="let e of elem.children" [element]="e"></app-page-element>
-        </mat-expansion-panel>
+        <ng-container *ngSwitchCase="'H2'">
+            <mat-expansion-panel *ngIf="params" class="flex col" [expanded]="hasView(elem)">
+                <mat-expansion-panel-header>{{elem.text}}</mat-expansion-panel-header>
+                <app-page-element *ngFor="let e of elem.children" [element]="e" [params]="params"></app-page-element>
+            </mat-expansion-panel>
+        </ng-container>
         <div *ngSwitchCase="'H3'" class="flex col">
             <h3>{{elem.text}}</h3>
-            <app-page-element *ngFor="let e of elem.children" [element]="e"></app-page-element>
+            <app-page-element *ngFor="let e of elem.children" [element]="e" [params]="params"></app-page-element>
         </div>
         <div *ngSwitchCase="'UL'" class="flex col">
-            <app-page-element *ngFor="let e of elem.children" [element]="e"></app-page-element>
+            <app-page-element *ngFor="let e of elem.children" [element]="e" [params]="params"></app-page-element>
         </div>
         <div *ngSwitchDefault [outerHTML]="elem | compress"></div>
     </container-elem>
