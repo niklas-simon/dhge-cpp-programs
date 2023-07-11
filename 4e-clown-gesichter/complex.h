@@ -19,8 +19,10 @@ class Comp : public GraObj {
         void move(int dx, int dy);
         void setSize(int _width, int _height);
         void scale(int percX, int percY);
+
     protected:
         void recalcSize();
+
     private:
         vector<GraObj *> sub;
 };

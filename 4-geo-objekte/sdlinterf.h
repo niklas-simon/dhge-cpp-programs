@@ -23,12 +23,12 @@ extern "C" {
 #endif
 
 // Initialisiere die SDL (mach das Grafikfenster auf)
-// 
+//
 // Sollte im main möglichst bald aufgerufen werden
 extern void sdlInit(void);
 
 // Schließe SDL (mach das Grafikfenster wieder zu)
-// 
+//
 // Sollte im main vor Ende des Programms aufgerufen werden
 extern void sdlExit(void);
 
@@ -62,8 +62,8 @@ void sdlDrawCyclicPoint(int x, int y, int color);
 // extX    ... Ausdehnung vom Mittelpunkt in X-Richtung in Pixel
 // extY    ... Ausdehnung vom Mittelpunkt in Y-Richtung in Pixel
 // r,g,b   ... Farbwerte
-extern void sdlDrawRect(int centerX, int centerY, int extX, int extY,
-                        int r, int g, int b);
+extern void sdlDrawRect(int centerX, int centerY, int extX, int extY, int r,
+                        int g, int b);
 
 // Zeichne ein Rechteck mit zwei gegenüberliegenden Ecken
 // (nur intern, wirklich angezeigt wird erst bei sdlUpdate).
@@ -73,8 +73,8 @@ extern void sdlDrawRect(int centerX, int centerY, int extX, int extY,
 // X2      ... X-Koordinate der gegenüberliegenden Ecke
 // Y2      ... Y-Koordinate der gegenüberliegenden Ecke
 // r,g,b   ... Farbwerte
-extern void sdlDrawRectFromTo(int X1, int Y1, int X2, int Y2,
-                              int r, int g, int b);
+extern void sdlDrawRectFromTo(int X1, int Y1, int X2, int Y2, int r, int g,
+                              int b);
 
 // Zeichne eine Linie
 // (nur intern, wirklich angezeigt wird erst bei sdlUpdate).
@@ -91,8 +91,8 @@ extern void sdlDrawLine(int x1, int y1, int x2, int y2, int r, int g, int b);
 // radX    ... Radius in waagrechter Richtung
 // radY    ... Radius in senkrechter Richtung
 // r,g,b   ... Farbwerte rot, grün, blau (jeweils 0 ... 255)
-extern void sdlDrawCirc(int centerX, int centerY, int radX, int radY,
-                        int r, int g, int b);
+extern void sdlDrawCirc(int centerX, int centerY, int radX, int radY, int r,
+                        int g, int b);
 
 // Zeichne einen Teil einer Ellipse
 // (nur intern, wirklich angezeigt wird erst bei sdlUpdate)
@@ -108,18 +108,18 @@ extern void sdlDrawCirc(int centerX, int centerY, int radX, int radY,
 //             SDL_CIRC_LOWER_RIGHT ... Quadrant rechts unten,
 //             SDL_CIRC_UPPER_LEFT  ... Quadrant links oben,
 //             SDL_CIRC_LOWER_LEFT  ... Quadrant links unten
-#define SDL_CIRC_FILLED       1
-#define SDL_CIRC_UPPER_RIGHT  2
-#define SDL_CIRC_LOWER_RIGHT  4
-#define SDL_CIRC_UPPER_LEFT   8
-#define SDL_CIRC_LOWER_LEFT   16
+#define SDL_CIRC_FILLED 1
+#define SDL_CIRC_UPPER_RIGHT 2
+#define SDL_CIRC_LOWER_RIGHT 4
+#define SDL_CIRC_UPPER_LEFT 8
+#define SDL_CIRC_LOWER_LEFT 16
 #define SDL_CIRC_LEFT (SDL_CIRC_UPPER_LEFT | SDL_CIRC_LOWER_LEFT)
 #define SDL_CIRC_RIGHT (SDL_CIRC_UPPER_RIGHT | SDL_CIRC_LOWER_RIGHT)
 #define SDL_CIRC_UPPER (SDL_CIRC_UPPER_LEFT | SDL_CIRC_UPPER_RIGHT)
 #define SDL_CIRC_LOWER (SDL_CIRC_LOWER_LEFT | SDL_CIRC_LOWER_RIGHT)
 #define SDL_CIRC_ALL (SDL_CIRC_LEFT | SDL_CIRC_RIGHT)
-extern void sdlDrawCircPart(int centerX, int centerY, int radX, int radY,
-                            int r, int g, int b, int part);
+extern void sdlDrawCircPart(int centerX, int centerY, int radX, int radY, int r,
+                            int g, int b, int part);
 
 // Aktualisiere den Bilschirm, führe die ausstehenden Zeichenbefehle aus:
 // Alles, was intern gezeichnet wurde, wird ins Grafikfenster kopiert

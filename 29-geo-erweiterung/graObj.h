@@ -14,7 +14,8 @@ class Criteria {
 
 class GraObj {
     public:
-        GraObj(const Color &_color, int _posX, int _posY, int _speedX, int _speedY, int _width, int _height, int z_index = 0);
+        GraObj(const Color &_color, int _posX, int _posY, int _speedX,
+               int _speedY, int _width, int _height, int z_index = 0);
         GraObj(GraObj *obj);
         ~GraObj();
 

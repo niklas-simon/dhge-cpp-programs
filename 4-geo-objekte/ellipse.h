@@ -7,7 +7,8 @@
 
 class Ellipse : public GraObj {
     public:
-        Ellipse(const Color &_color, int _posX, int _posY, int _speedX, int _speedY, int _width, int _height);
+        Ellipse(const Color &_color, int _posX, int _posY, int _speedX,
+                int _speedY, int _width, int _height);
         Ellipse(Ellipse *rect);
         ~Ellipse();
         void draw();

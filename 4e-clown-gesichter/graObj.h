@@ -6,7 +6,8 @@
 
 class GraObj {
     public:
-        GraObj(const Color &_color, int _posX, int _posY, int _speedX, int _speedY, int _width, int _height);
+        GraObj(const Color &_color, int _posX, int _posY, int _speedX,
+               int _speedY, int _width, int _height);
         GraObj(GraObj *obj);
 
         Color getColor() const;

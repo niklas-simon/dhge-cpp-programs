@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-
 // Groesse des "Landes" in x- und y-Richtung, in Pixeln
 // Rundherum lassen wir 10 Pixel Rand
 #define RAND 10
@@ -80,176 +79,183 @@ void zeichne_lsg(void);
 // Deine bisherige Fahrtstrecke ist "summe" lang
 // Probiere alle Moeglichkeiten fuer den naechsten Schritt
 // (= die naechste Stadt ausgehend von Stadt Nummer "stadt")
-void search(int index, int city, double sum) {
-    curr_solution[city] = index;
-    if (index >= count - 1) {
-        sum += distance[city][0];
-        if (sum < optimal) {
-            for (int i = 0; i < count; i++) {
-                opt_solution[i] = curr_solution[i];
-            }
-            optimal = sum;
-        }
-    } else {
-        for (int i = 0; i < count; i++) {
-            if (curr_solution[i] == -1) {
-                if (sum + distance[city][i] < optimal) {
-                    search(index + 1, i, sum + distance[city][i]);
+void search(int index, int city, double sum)
+{
+        curr_solution[city] = index;
+        if (index >= count - 1) {
+                sum += distance[city][0];
+                if (sum < optimal) {
+                        for (int i = 0; i < count; i++) {
+                                opt_solution[i] = curr_solution[i];
+                        }
+                        optimal = sum;
                 }
-            }
+        } else {
+                for (int i = 0; i < count; i++) {
+                        if (curr_solution[i] == -1) {
+                                if (sum + distance[city][i] < optimal) {
+                                        search(index + 1, i,
+                                               sum + distance[city][i]);
+                                }
+                        }
+                }
         }
-    }
-    curr_solution[city] = -1;
+        curr_solution[city] = -1;
 }
 
 // Befuelle die Stadt- und Verbindungs-Arrays
 // Zeichne die Staedte und Verbindungen
-void erzeuge_karte(void) {
-    // Staedte erzeugen
-    for (koord_t *a = koord; a < koord + count; ++a) {
-        int x = rand() % BREITE + RAND;
-        int y = rand() % HOEHE + RAND;
-        sdlDrawLine(x - 2, y - 2, x + 2, y + 2, STADT_R, STADT_G, STADT_B);
-        sdlDrawLine(x - 2, y + 2, x + 2, y - 2, STADT_R, STADT_G, STADT_B);
-        a->x = x;
-        a->y = y;
-    }
-    sdlUpdate();
-
-    // Zuerst einmal alle Verbindungen auf unendlich setzen
-    for (int i = 0; i < count; ++i) {
-        for (int j = 0; j < count; ++j) {
-            distance[i][j] = HUGE_VAL;
+void erzeuge_karte(void)
+{
+        // Staedte erzeugen
+        for (koord_t *a = koord; a < koord + count; ++a) {
+                int x = rand() % BREITE + RAND;
+                int y = rand() % HOEHE + RAND;
+                sdlDrawLine(x - 2, y - 2, x + 2, y + 2, STADT_R, STADT_G,
+                            STADT_B);
+                sdlDrawLine(x - 2, y + 2, x + 2, y - 2, STADT_R, STADT_G,
+                            STADT_B);
+                a->x = x;
+                a->y = y;
         }
-    }
+        sdlUpdate();
 
-    // Wie viele Verbindungen soll jede Stadt mindestens bekommen
-    // Das koennen nicht mehr sein, als es andere Staedte gibt!
-    int verb_soll = (MIN_VERB < (count - 1)) ? MIN_VERB : (count - 1);
-
-    // Verbindungen erzeugen, Stadt fuer Stadt
-    for (int i = 0; i < count; ++i) {
-        // Erster Schritt:
-        // Zaehle die schon vorhandenen Verbindungen,
-        // berechne die Laenge der noch nicht vorhandenen in einem Hilfs-Array
-        double hilfs[count];
-        int verb_anz = 0;
-        for (int j = 0; j < count; ++j) {
-            if (i == j) {
-                // Verbindung zu sich selbst ausschliessen!
-                hilfs[j] = HUGE_VAL;
-                continue;
-            }
-            if (distance[i][j] == HUGE_VAL) {
-                double dx = koord[i].x - koord[j].x;
-                double dy = koord[i].y - koord[j].y;
-                hilfs[j] = sqrt(dx * dx + dy * dy);
-            } else {
-                ++verb_anz;
-                hilfs[j] = HUGE_VAL;
-            }
-        }
-
-        // Zweiter Schritt:
-        // Fuege neue Verbindungen hinzu, bis die gewuenschte Anzahl erreicht ist
-        for (; verb_anz < verb_soll; ++verb_anz) {
-            // Suche die kuerzeste Verbindung im Hilfs-Array und deren Stadt k
-            double min = HUGE_VAL;
-            int k = -1;
-            for (int j = 0; j < count; ++j) {
-                if (hilfs[j] < min) {
-                    min = hilfs[j];
-                    k = j;
+        // Zuerst einmal alle Verbindungen auf unendlich setzen
+        for (int i = 0; i < count; ++i) {
+                for (int j = 0; j < count; ++j) {
+                        distance[i][j] = HUGE_VAL;
                 }
-            }
-            // Trage Verbindung i <--> k in beide Richtungen ein
-            distance[i][k] = distance[k][i] = min;
-            // ... zeichne sie
-            sdlDrawLine(koord[i].x, koord[i].y, koord[k].x, koord[k].y,
-                        VERB_R, VERB_G, VERB_B);
-            // ... und loesche sie aus dem Hilfs-Array
-            hilfs[k] = HUGE_VAL;
         }
-    }
 
-    sdlUpdate();
+        // Wie viele Verbindungen soll jede Stadt mindestens bekommen
+        // Das koennen nicht mehr sein, als es andere Staedte gibt!
+        int verb_soll = (MIN_VERB < (count - 1)) ? MIN_VERB : (count - 1);
+
+        // Verbindungen erzeugen, Stadt fuer Stadt
+        for (int i = 0; i < count; ++i) {
+                // Erster Schritt:
+                // Zaehle die schon vorhandenen Verbindungen,
+                // berechne die Laenge der noch nicht vorhandenen in einem Hilfs-Array
+                double hilfs[count];
+                int verb_anz = 0;
+                for (int j = 0; j < count; ++j) {
+                        if (i == j) {
+                                // Verbindung zu sich selbst ausschliessen!
+                                hilfs[j] = HUGE_VAL;
+                                continue;
+                        }
+                        if (distance[i][j] == HUGE_VAL) {
+                                double dx = koord[i].x - koord[j].x;
+                                double dy = koord[i].y - koord[j].y;
+                                hilfs[j] = sqrt(dx * dx + dy * dy);
+                        } else {
+                                ++verb_anz;
+                                hilfs[j] = HUGE_VAL;
+                        }
+                }
+
+                // Zweiter Schritt:
+                // Fuege neue Verbindungen hinzu, bis die gewuenschte Anzahl erreicht ist
+                for (; verb_anz < verb_soll; ++verb_anz) {
+                        // Suche die kuerzeste Verbindung im Hilfs-Array und deren Stadt k
+                        double min = HUGE_VAL;
+                        int k = -1;
+                        for (int j = 0; j < count; ++j) {
+                                if (hilfs[j] < min) {
+                                        min = hilfs[j];
+                                        k = j;
+                                }
+                        }
+                        // Trage Verbindung i <--> k in beide Richtungen ein
+                        distance[i][k] = distance[k][i] = min;
+                        // ... zeichne sie
+                        sdlDrawLine(koord[i].x, koord[i].y, koord[k].x,
+                                    koord[k].y, VERB_R, VERB_G, VERB_B);
+                        // ... und loesche sie aus dem Hilfs-Array
+                        hilfs[k] = HUGE_VAL;
+                }
+        }
+
+        sdlUpdate();
 }
 
 // Zeichne die Loesung und berechne zur Pruefung ihre Laenge
-void zeichne_lsg(void) {
-    double summe = 0;
-    int alt, neu; // Alte und neue Stadt eines Schrittes
+void zeichne_lsg(void)
+{
+        double summe = 0;
+        int alt, neu; // Alte und neue Stadt eines Schrittes
 
-    alt = 0;      // Ausgangspunkt = Stadt 0
-    for (int schritt = 1; schritt < count; ++schritt) {
-        // suche die Stadt fuer diesen Schritt in der Loesung
-        for (neu = 0;; ++neu) {
-            if (neu >= count) {
-                printf("Mir fehlt Schritt Nummer %d!\n", schritt);
-                exit(EXIT_FAILURE);
-            }
-            if (opt_solution[neu] == schritt)
-                break;
+        alt = 0; // Ausgangspunkt = Stadt 0
+        for (int schritt = 1; schritt < count; ++schritt) {
+                // suche die Stadt fuer diesen Schritt in der Loesung
+                for (neu = 0;; ++neu) {
+                        if (neu >= count) {
+                                printf("Mir fehlt Schritt Nummer %d!\n",
+                                       schritt);
+                                exit(EXIT_FAILURE);
+                        }
+                        if (opt_solution[neu] == schritt)
+                                break;
+                }
+                // Verbindung von der vorigen Stadt ausgeben und aufsummieren
+                sdlDrawLine(koord[alt].x, koord[alt].y, koord[neu].x,
+                            koord[neu].y, ROUTE_R, ROUTE_G, ROUTE_B);
+                summe += distance[alt][neu];
+                // die aktuelle Stadt ist im naechsten Schritt die vorige Stadt
+                alt = neu;
         }
-        // Verbindung von der vorigen Stadt ausgeben und aufsummieren
-        sdlDrawLine(koord[alt].x, koord[alt].y, koord[neu].x, koord[neu].y,
-                    ROUTE_R, ROUTE_G, ROUTE_B);
-        summe += distance[alt][neu];
-        // die aktuelle Stadt ist im naechsten Schritt die vorige Stadt
-        alt = neu;
-    }
 
-    // gib den Weg zurueck zur ersten Stadt aus, er gehoert auch zur Gesamtlaenge
-    sdlDrawLine(koord[alt].x, koord[alt].y, koord[0].x, koord[0].y,
-                ROUTE_R, ROUTE_G, ROUTE_B);
-    summe += distance[alt][0];
+        // gib den Weg zurueck zur ersten Stadt aus, er gehoert auch zur Gesamtlaenge
+        sdlDrawLine(koord[alt].x, koord[alt].y, koord[0].x, koord[0].y, ROUTE_R,
+                    ROUTE_G, ROUTE_B);
+        summe += distance[alt][0];
 
-    sdlUpdate();
+        sdlUpdate();
 
-    // stimmt die Laenge ueberein?
-    if (summe != optimal) {
-        printf("Die Laenge stimmt nicht (ist: %g / laut Loesung: %g)!\n",
-               summe, optimal);
-    } else {
-        printf("Gesamtlaenge fuer %d Staedte %g\n", count, summe);
-    }
+        // stimmt die Laenge ueberein?
+        if (summe != optimal) {
+                printf("Die Laenge stimmt nicht (ist: %g / laut Loesung: %g)!\n",
+                       summe, optimal);
+        } else {
+                printf("Gesamtlaenge fuer %d Staedte %g\n", count, summe);
+        }
 }
 
-int main(int argc, const char *argv[]) {
-    if ((argc != 2) ||
-        ((count = atoi(argv[1])) < 3) ||
-        (count > MAX_ANZ)) {
-        fprintf(stderr, "Usage: %s city_count  (= 3...%d)\n", argv[0], MAX_ANZ);
-        exit(EXIT_FAILURE);
-    }
+int main(int argc, const char *argv[])
+{
+        if ((argc != 2) || ((count = atoi(argv[1])) < 3) || (count > MAX_ANZ)) {
+                fprintf(stderr, "Usage: %s city_count  (= 3...%d)\n", argv[0],
+                        MAX_ANZ);
+                exit(EXIT_FAILURE);
+        }
 
-    srand(time(NULL));
+        srand(time(NULL));
 
-    sdlInit();
+        sdlInit();
 
-    // Initialisiere und zeichne die Staedte und Verbindungen
-    erzeuge_karte();
+        // Initialisiere und zeichne die Staedte und Verbindungen
+        erzeuge_karte();
 
-    // setze die aktuelle Loesung auf "noch keine Stadt besucht"
-    for (int i = 0; i < count; ++i) {
-        curr_solution[i] = -1;
-    }
+        // setze die aktuelle Loesung auf "noch keine Stadt besucht"
+        for (int i = 0; i < count; ++i) {
+                curr_solution[i] = -1;
+        }
 
-    // unsere Suche beginnt immer bei Stadt 0, sie ist auch Schritt 0
-    search(0, 0, 0);
+        // unsere Suche beginnt immer bei Stadt 0, sie ist auch Schritt 0
+        search(0, 0, 0);
 
-    if (optimal == HUGE_VAL) {
-        printf("Keine Loesung gefunden!\n");
-    } else {
-        zeichne_lsg();
-    }
+        if (optimal == HUGE_VAL) {
+                printf("Keine Loesung gefunden!\n");
+        } else {
+                zeichne_lsg();
+        }
 
-    // periodisches sdlMilliSleep, damit periodisch auf Close-Events geprueft wird
-    for (;;) {
-        sdlMilliSleep(100);
-    }
+        // periodisches sdlMilliSleep, damit periodisch auf Close-Events geprueft wird
+        for (;;) {
+                sdlMilliSleep(100);
+        }
 
-    sdlExit();
+        sdlExit();
 
-    exit(EXIT_SUCCESS);
+        exit(EXIT_SUCCESS);
 }

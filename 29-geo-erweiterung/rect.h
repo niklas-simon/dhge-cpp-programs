@@ -7,7 +7,8 @@
 
 class Rect : public GraObj {
     public:
-        Rect(const Color &_color, int _posX, int _posY, int _speedX, int _speedY, int _width, int _height, int z_index = 0);
+        Rect(const Color &_color, int _posX, int _posY, int _speedX,
+             int _speedY, int _width, int _height, int z_index = 0);
         Rect(Rect *rect);
         ~Rect();
         void draw();

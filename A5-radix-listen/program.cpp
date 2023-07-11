@@ -13,18 +13,21 @@ class Element {
         int id;
         Element *next;
         static int id_counter;
-        Element() :
-            id(id_counter++), next(nullptr) {
-            for (int i = 0; i < d_count; i++) {
-                digits[i] = rand() % 10;
-            }
+        Element()
+                : id(id_counter++)
+                , next(nullptr)
+        {
+                for (int i = 0; i < d_count; i++) {
+                        digits[i] = rand() % 10;
+                }
         }
-        void print() {
-            cout << id << ":\t";
-            for (int i = 0; i < d_count; i++) {
-                cout << digits[i];
-            }
-            cout << endl;
+        void print()
+        {
+                cout << id << ":\t";
+                for (int i = 0; i < d_count; i++) {
+                        cout << digits[i];
+                }
+                cout << endl;
         }
 };
 
@@ -35,68 +38,76 @@ class List {
         Element *head, *tail;
 
     public:
-        List() {
-            head = tail = nullptr;
+        List()
+        {
+                head = tail = nullptr;
         }
-        Element *removeFirst() {
-            if (!head)
-                return nullptr;
-            Element *t = head;
-            head = t->next;
-            if (!head)
-                tail = nullptr;
-            return t;
+        Element *removeFirst()
+        {
+                if (!head)
+                        return nullptr;
+                Element *t = head;
+                head = t->next;
+                if (!head)
+                        tail = nullptr;
+                return t;
         }
-        void append(Element *e) {
-            if (!head)
-                head = e;
-            if (tail)
-                tail->next = e;
-            tail = e;
-            e->next = nullptr;
+        void append(Element *e)
+        {
+                if (!head)
+                        head = e;
+                if (tail)
+                        tail->next = e;
+                tail = e;
+                e->next = nullptr;
         }
-        void append(List &l) {
-            if (!l.head)
-                return;
-            if (!head) {
-                head = l.head;
-                tail = l.tail;
-            } else {
-                tail->next = l.head;
-                tail = l.tail;
-                tail->next = nullptr;
-            }
-            l.head = l.tail = nullptr;
-        }
-        List &sort() {
-            List buckets[10];
-            for (int i = d_count - 1; i >= 0; i--) {
-                for (Element *e = removeFirst(); e; e = removeFirst()) {
-                    buckets[e->digits[i]].append(e);
+        void append(List &l)
+        {
+                if (!l.head)
+                        return;
+                if (!head) {
+                        head = l.head;
+                        tail = l.tail;
+                } else {
+                        tail->next = l.head;
+                        tail = l.tail;
+                        tail->next = nullptr;
                 }
-                for (int j = 0; j < 10; j++) {
-                    append(buckets[j]);
+                l.head = l.tail = nullptr;
+        }
+        List &sort()
+        {
+                List buckets[10];
+                for (int i = d_count - 1; i >= 0; i--) {
+                        for (Element *e = removeFirst(); e; e = removeFirst()) {
+                                buckets[e->digits[i]].append(e);
+                        }
+                        for (int j = 0; j < 10; j++) {
+                                append(buckets[j]);
+                        }
                 }
-            }
-            return *this;
+                return *this;
         }
-        List &fill(int n) {
-            for (int i = 0; i < n; i++) {
-                append(new Element());
-            }
-            return *this;
+        List &fill(int n)
+        {
+                for (int i = 0; i < n; i++) {
+                        append(new Element());
+                }
+                return *this;
         }
-        List &print() {
-            for (Element *e = head; e; e = e->next) {
-                e->print();
-            }
-            cout << endl;
-            return *this;
+        List &print()
+        {
+                for (Element *e = head; e; e = e->next) {
+                        e->print();
+                }
+                cout << endl;
+                return *this;
         }
 };
 
-int main() {
-    srand(time(nullptr));
-    List l = List();
-    l.fill(e_count).print().sort().print();
+int main()
+{
+        srand(time(nullptr));
+        List l = List();
+        l.fill(e_count).print().sort().print();
 }

@@ -4,89 +4,132 @@
 
 using namespace std;
 
-GraObj::GraObj(const Color &_color, int _posX, int _posY, int _speedX, int _speedY, int _width, int _height) :
-    color(_color), posX(_posX), posY(_posY), speedX(_speedX), speedY(_speedY), width(_width), height(_height) {}
-
-GraObj::GraObj(GraObj *rect) :
-    color(rect->getColor()),
-    posX(rect->getPosX()), posY(rect->getPosY()),
-    speedX(rect->getSpeedX()), speedY(rect->getSpeedY()),
-    width(rect->getWidth()), height(rect->getHeight()) {}
-
-Color GraObj::getColor() const { return color; }
-int GraObj::getPosX() const { return posX; }
-int GraObj::getPosY() const { return posY; }
-int GraObj::getSpeedX() const { return speedX; }
-int GraObj::getSpeedY() const { return speedY; }
-
-int GraObj::getWidth() const { return width; }
-int GraObj::getHeight() const { return height; }
-
-void GraObj::setColor(const Color &_color) {
-    color = _color;
-    draw();
+GraObj::GraObj(const Color &_color, int _posX, int _posY, int _speedX,
+               int _speedY, int _width, int _height)
+        : color(_color)
+        , posX(_posX)
+        , posY(_posY)
+        , speedX(_speedX)
+        , speedY(_speedY)
+        , width(_width)
+        , height(_height)
+{
 }
 
-void GraObj::setSpeed(int _speedX, int _speedY) {
-    speedX = _speedX;
-    speedY = _speedY;
+GraObj::GraObj(GraObj *rect)
+        : color(rect->getColor())
+        , posX(rect->getPosX())
+        , posY(rect->getPosY())
+        , speedX(rect->getSpeedX())
+        , speedY(rect->getSpeedY())
+        , width(rect->getWidth())
+        , height(rect->getHeight())
+{
 }
 
-void GraObj::setSize(int _width, int _height) {
-    undraw();
-    width = _width;
-    height = _height;
-    draw();
+Color GraObj::getColor() const
+{
+        return color;
+}
+int GraObj::getPosX() const
+{
+        return posX;
+}
+int GraObj::getPosY() const
+{
+        return posY;
+}
+int GraObj::getSpeedX() const
+{
+        return speedX;
+}
+int GraObj::getSpeedY() const
+{
+        return speedY;
 }
 
-void GraObj::scale(int percX, int percY) {
-    undraw();
-    width = percX * width / 100;
-    height = percY * height / 100;
-    draw();
+int GraObj::getWidth() const
+{
+        return width;
+}
+int GraObj::getHeight() const
+{
+        return height;
 }
 
-void GraObj::setPos(int x, int y) {
-    undraw();
-    posX = x;
-    posY = y;
-    draw();
+void GraObj::setColor(const Color &_color)
+{
+        color = _color;
+        draw();
 }
 
-void GraObj::move(int dx, int dy) {
-    undraw();
-    posX += dx;
-    posY += dy;
-    draw();
+void GraObj::setSpeed(int _speedX, int _speedY)
+{
+        speedX = _speedX;
+        speedY = _speedY;
 }
 
-bool GraObj::fly(bool bounce) {
-    bool ret = true;
-    if (((speedX > 0) && (posX >= SDL_X_SIZE - speedX - (width / 2))) ||
-        ((speedX < 0) && (posX < -speedX + (width / 2)))) {
-        if (bounce) {
-            speedX = -speedX;
-            ret = false;
-        } else {
-            return false;
+void GraObj::setSize(int _width, int _height)
+{
+        undraw();
+        width = _width;
+        height = _height;
+        draw();
+}
+
+void GraObj::scale(int percX, int percY)
+{
+        undraw();
+        width = percX * width / 100;
+        height = percY * height / 100;
+        draw();
+}
+
+void GraObj::setPos(int x, int y)
+{
+        undraw();
+        posX = x;
+        posY = y;
+        draw();
+}
+
+void GraObj::move(int dx, int dy)
+{
+        undraw();
+        posX += dx;
+        posY += dy;
+        draw();
+}
+
+bool GraObj::fly(bool bounce)
+{
+        bool ret = true;
+        if (((speedX > 0) && (posX >= SDL_X_SIZE - speedX - (width / 2))) ||
+            ((speedX < 0) && (posX < -speedX + (width / 2)))) {
+                if (bounce) {
+                        speedX = -speedX;
+                        ret = false;
+                } else {
+                        return false;
+                }
         }
-    }
-    if (((speedY > 0) && (posY >= SDL_Y_SIZE - speedY - (height / 2))) ||
-        ((speedY < 0) && (posY < -speedY + (height / 2)))) {
-        if (bounce) {
-            speedY = -speedY;
-            ret = false;
-        } else {
-            return false;
+        if (((speedY > 0) && (posY >= SDL_Y_SIZE - speedY - (height / 2))) ||
+            ((speedY < 0) && (posY < -speedY + (height / 2)))) {
+                if (bounce) {
+                        speedY = -speedY;
+                        ret = false;
+                } else {
+                        return false;
+                }
         }
-    }
 
-    move(speedX, speedY);
-    return ret;
+        move(speedX, speedY);
+        return ret;
 }
 
-void GraObj::moveOnTop(GraObj &rect) {
-    undraw();
-    setPos(rect.getPosX(), rect.getPosY());
-    draw();
+void GraObj::moveOnTop(GraObj &rect)
+{
+        undraw();
+        setPos(rect.getPosX(), rect.getPosY());
+        draw();
 }
